@@ -1,0 +1,17 @@
+{
+  "name": "json-injector",
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "ace-builds": "^1.4.5"
+  },
+  "devDependencies": {},
+  "exportsOverride": {
+    "ace-builds": {
+      "js": "**/*",
+      "css": "**/*"
+    },
+    "jquery": {
+      "js": "dist/jquery.min.js"
+    }
+  }
+}

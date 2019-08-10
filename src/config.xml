@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="FISUDA" name="json-injector" version="0.1.0">
+
+    <details>
+        <title>Json Injector</title>
+        <homepage>https://github.com/fisuda/json-injector-widget</homepage>
+        <authors>Kazuhito Suda &lt;kazuhito@fisuda.jp&gt;</authors>
+        <email>wirecloud@fisuda.jp</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>Json Injector</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/userguide.md</doc>
+        <license>MIT</license>
+        <issuetracker>https://github.com/fisuda/json-injector-widget/issues</issuetracker>
+    </details>
+
+    <requirements>
+        <feature name="StyledElements"/>
+    </requirements>
+
+    <preferences>
+    </preferences>
+
+    <wiring>
+        <outputendpoint name="output" type="text" label="Output" description="JSON data" friendcode="*"/>
+    </wiring>
+
+    <contents src="index.html" useplatformstyle="true"/>
+    <rendering height="300px" width="30%"/>
+
+</widget>
