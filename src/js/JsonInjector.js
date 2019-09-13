@@ -1,6 +1,6 @@
 /*
  * json-injector
- * https://github.com/fisuda/json-injector-widget
+ * https://github.com/lets-fiware/json-injector
  *
  * Copyright (c) 2019 Kazuhito Suda
  * Licensed under the MIT license.
@@ -60,7 +60,7 @@ var JsonInjector = (function () {
         action_buttons.className = 'btn-group';
         document.getElementById('buttons').appendChild(action_buttons);
 
-        sendbtn = new StyledElements.Button({'class': 'btn-info fa fa-play', 'title': 'Output data'});
+        sendbtn = new StyledElements.Button({'class': 'btn-info', 'iconClass': 'fa fa-play', 'title': 'Output data'});
         sendbtn.addEventListener('click', () => {
             if (MashupPlatform.widget.outputs.output.connected) {
                 var value = editor.getValue();

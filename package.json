@@ -24,7 +24,7 @@
     "wirecloud-config-parser": "^0.2.0"
   },
   "private": true,
-  "name": "json-injector-widget",
+  "name": "json-injector",
   "version": "1.0.0",
   "main": "Gruntfile.js",
   "directories": {
