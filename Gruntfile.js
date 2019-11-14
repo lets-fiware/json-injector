@@ -196,13 +196,13 @@ module.exports = function (grunt) {
     grunt.registerTask('test', [
         'bower:install',
         'eslint',
-//        'karma:widget'
+        //        'karma:widget'
     ]);
 
     grunt.registerTask('ci', [
         'bower:install',
         'eslint',
-//        'karma:widgetci',
+        //        'karma:widgetci',
         'coveralls'
     ]);
 
