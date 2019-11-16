@@ -7,8 +7,12 @@
   "devDependencies": {},
   "exportsOverride": {
     "ace-builds": {
-      "js": "**/*",
-      "css": "**/*"
+      "js": [
+        "src-noconflict/ace.js",
+        "src-noconflict/mode-yaml.js",
+        "src-noconflict/mode-json.js",
+        "src-noconflict/theme-cobalt.js"
+      ]
     },
     "jquery": {
       "js": "dist/jquery.min.js"
