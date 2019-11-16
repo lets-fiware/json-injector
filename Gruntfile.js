@@ -13,8 +13,6 @@ module.exports = function (grunt) {
 
     'use strict';
 
-    var path = require('path');
-
     grunt.initConfig({
 
         isDev: grunt.option('dev') ? '-dev' : '',
@@ -24,10 +22,7 @@ module.exports = function (grunt) {
             install: {
                 options: {
                     layout: function (type, component, source) {
-                        if (component == 'ace-builds') {
-                            component = 'ace';
-                        }
-                        return path.join(type, component);
+                        return type;
                     },
                     targetDir: './build/lib/lib',
                     copy: true
