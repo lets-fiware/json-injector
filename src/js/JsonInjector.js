@@ -23,6 +23,9 @@ var JsonInjector = (function () {
     // =========================================================================
 
     var JsonInjector = function JsonInjector() {
+        const editorData = 'JsonInjector-data';
+        const editorMode = 'JsonInjector-mode';
+
         layout = new StyledElements.VerticalLayout();
         layout.insertInto(document.body);
         layout.north.addClassName('header');
@@ -38,21 +41,25 @@ var JsonInjector = (function () {
             {label: 'Text', value: 'Text'}
         ];
 
+        var getEditorMode = function getEditorMode(mode) {
+            switch (mode) {
+            case 'JSON - (Text)':
+                return 'ace/mode/json';
+            case 'JSON - (Object)':
+                return 'ace/mode/json';
+            case 'Text':
+                return 'ace/mode/plain_text';
+            }
+            return '';
+        }
+
         typeSelector = new StyledElements.Select();
         typeSelector.addEntries(entries);
-        typeSelector.setValue('JSON - (Object)');
+        typeSelector.setValue(sessionStorage.getItem(editorMode) || 'JSON - (Object)');
         typeSelector.addEventListener('change', () => {
-            switch (typeSelector.getValue()) {
-            case 'JSON - (Text)':
-                editor.session.setMode('ace/mode/json');
-                break;
-            case 'JSON - (Object)':
-                editor.session.setMode('ace/mode/json');
-                break;
-            case 'Text':
-                editor.session.setMode('ace/mode/plain_text');
-                break;
-            }
+            const mode = typeSelector.getValue();
+            editor.session.setMode(getEditorMode(mode));
+            sessionStorage.setItem(editorMode, mode);
         });
         typeSelector.insertInto(parent);
 
@@ -65,7 +72,7 @@ var JsonInjector = (function () {
             if (MashupPlatform.widget.outputs.output.connected) {
                 var value = editor.getValue();
                 if (typeSelector.getValue() === 'JSON - (Object)') {
-                    value = JSON.parse(value);
+                    value = (value != '') ? JSON.parse(value) : null;
                 }
                 MashupPlatform.wiring.pushEvent('output', value);
             }
@@ -75,9 +82,12 @@ var JsonInjector = (function () {
         layout.center.addClassName('acecontainer');
         editor = ace.edit(layout.center.wrapperElement);
         editor.setFontSize(14);
-        editor.session.setMode('ace/mode/json');
+        editor.session.setMode(getEditorMode(sessionStorage.getItem(editorMode)));
         editor.session.setTabSize(2);
-        editor.setValue('', -1);
+        editor.setValue(sessionStorage.getItem(editorData) || '');
+        editor.session.on('change', (e) => {
+            sessionStorage.setItem(editorData, editor.getValue());
+        });
         layout.repaint();
     };
 
