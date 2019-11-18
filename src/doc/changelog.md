@@ -1,3 +1,9 @@
+## v0.1.2 (2019-11-18)
+
+- Add input endpoint
+- Fix save state
+
+
 ## v0.1.2 (2019-11-16)
 
 - Add save state feature
