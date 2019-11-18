@@ -23,8 +23,9 @@ var JsonInjector = (function () {
     // =========================================================================
 
     var JsonInjector = function JsonInjector() {
-        const editorData = 'JsonInjector-data';
-        const editorMode = 'JsonInjector-mode';
+        const title = encodeURI(MashupPlatform.widget.context.get('title'));
+        const editorData = 'JsonInjector-data-' + title + MashupPlatform.widget.id;
+        const editorMode = 'JsonInjector-mode-' + title + MashupPlatform.widget.id;
 
         layout = new StyledElements.VerticalLayout();
         layout.insertInto(document.body);
@@ -89,6 +90,31 @@ var JsonInjector = (function () {
             sessionStorage.setItem(editorData, editor.getValue());
         });
         layout.repaint();
+
+        MashupPlatform.wiring.registerCallback("input", function (data) {
+            var type = '';
+            if (typeof data === "object") {
+                try {
+                    type = 'JSON - (Object)';
+                    data = JSON.stringify(data, null , "\t");
+                } catch (e) {
+                    type = '';
+                }
+            } else if (typeof data === "string") {
+                type = 'JSON - (Object)';
+                try {
+                    data = JSON.parse(data);
+                    data = JSON.stringify(data, null , "\t");
+                } catch (e) {
+                    type = 'Text';
+                }
+            }
+            if (type != '') {
+                typeSelector.setValue(type);
+                editor.session.setMode(getEditorMode(type));
+                editor.setValue(data);
+            }
+        });
     };
 
     // =========================================================================

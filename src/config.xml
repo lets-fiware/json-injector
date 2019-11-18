@@ -24,6 +24,7 @@
     </preferences>
 
     <wiring>
+        <inputendpoint name="input" type="text" label="input" description="input data" />
         <outputendpoint name="output" type="text" label="Output" description="JSON data" friendcode="*"/>
     </wiring>
 
