@@ -11,7 +11,8 @@
         "src-noconflict/ace.js",
         "src-noconflict/mode-yaml.js",
         "src-noconflict/mode-json.js",
-        "src-noconflict/theme-cobalt.js"
+        "src-noconflict/theme-cobalt.js",
+        "src-noconflict/worker-json.js"
       ]
     },
     "jquery": {
