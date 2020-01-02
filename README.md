@@ -1,6 +1,11 @@
 # json-injector widget
 
-The json-injector widget is a WireCloud widget that provides ...
+[![](https://nexus.lab.fiware.org/repository/raw/public/badges/chapters/visualization.svg)](https://www.fiware.org/developers/catalogue/)
+[![License: MIT](https://img.shields.io/github/license/lets-fiware/json-injector.svg)](https://opensource.org/licenses/MIT)<br/>
+[![Build Status](https://travis-ci.org/lets-fiware/json-injector.svg?branch=master)](https://travis-ci.org/lets-fiware/json-injector)
+[![Coverage Status](https://coveralls.io/repos/github/lets-fiware/json-injector/badge.svg?branch=master)](https://coveralls.io/github/lets-fiware/json-injector?branch=master)
+
+The json-injector widget is a WireCloud widget that allows you to send Json data to an output endpoint.
 
 Build
 -----

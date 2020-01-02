@@ -7,16 +7,11 @@
  */
 
 /* exported JsonInjector */
-/* global $, ace, MashupPlatform, StyledElements */
+/* global ace, MashupPlatform, StyledElements */
 
 var JsonInjector = (function () {
 
     'use strict';
-
-    var layout;
-    var editor;
-    var typeSelector;
-    var sendbtn;
 
     // =========================================================================
     // CLASS DEFINITION
@@ -27,14 +22,7 @@ var JsonInjector = (function () {
         const editorData = 'JsonInjector-data-' + title + MashupPlatform.widget.id;
         const editorMode = 'JsonInjector-mode-' + title + MashupPlatform.widget.id;
 
-        layout = new StyledElements.VerticalLayout();
-        layout.insertInto(document.body);
-        layout.north.addClassName('header');
-        layout.north.appendChild(new StyledElements.Fragment('<h4 class="text-primary">Type: <span id="type-data">No data</span><div id="buttons"></div></h4>'));
-
-        var typed = $('#type-data')[0];
-        var parent = typed.parentNode;
-        parent.removeChild(typed);
+        var builder = new StyledElements.GUIBuilder();
 
         var entries = [
             {label: 'JSON - (Text)', value: 'JSON - (Text)'},
@@ -54,7 +42,7 @@ var JsonInjector = (function () {
             return '';
         }
 
-        typeSelector = new StyledElements.Select();
+        var typeSelector = new StyledElements.Select();
         typeSelector.addEntries(entries);
         typeSelector.setValue(sessionStorage.getItem(editorMode) || 'JSON - (Object)');
         typeSelector.addEventListener('change', () => {
@@ -62,13 +50,19 @@ var JsonInjector = (function () {
             editor.session.setMode(getEditorMode(mode));
             sessionStorage.setItem(editorMode, mode);
         });
-        typeSelector.insertInto(parent);
+
+        var buttons = document.createElement('div');
+        buttons.className = "buttons";
 
         var action_buttons = document.createElement('div');
         action_buttons.className = 'btn-group';
-        document.getElementById('buttons').appendChild(action_buttons);
+        buttons.appendChild(action_buttons);
 
-        sendbtn = new StyledElements.Button({'class': 'btn-info', 'iconClass': 'fa fa-play', 'title': 'Output data'});
+        var sendbtn = new StyledElements.Button({
+            iconClass: 'fa fa-play',
+            state: 'info',
+            title: 'Output data'
+        });
         sendbtn.addEventListener('click', () => {
             if (MashupPlatform.widget.outputs.output.connected) {
                 var value = editor.getValue();
@@ -80,10 +74,21 @@ var JsonInjector = (function () {
         });
         sendbtn.insertInto(action_buttons);
 
+        var layout = new StyledElements.VerticalLayout();
+        layout.insertInto(document.body);
+        layout.north.addClassName('header');
+        layout.north.appendChild(builder.parse(
+            builder.DEFAULT_OPENING + '<h4 class="text-primary"><div class="type-selector">Type: <t:typeSelector/></div><t:buttons/></h4>' + builder.DEFAULT_CLOSING,
+            {
+                buttons: buttons,
+                typeSelector: typeSelector
+            }
+        ));
+
         layout.center.addClassName('acecontainer');
-        editor = ace.edit(layout.center.wrapperElement);
+        var editor = ace.edit(layout.center.wrapperElement);
         editor.setFontSize(14);
-        editor.session.setMode(getEditorMode(sessionStorage.getItem(editorMode)));
+        editor.session.setMode(getEditorMode(sessionStorage.getItem(editorMode)) || 'ace/mode/json');
         editor.session.setTabSize(2);
         editor.setValue(sessionStorage.getItem(editorData) || '');
         editor.session.on('change', (e) => {

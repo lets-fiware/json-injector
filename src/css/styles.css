@@ -3,13 +3,22 @@
     border: 1px solid rgb(231, 231, 231);
 }
 
-.text-primary {
-    margin-left: 10px;
-    margin-right: 10px;
+.header > h4 {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.text-primary > .se-select {
-    margin-bottom: 0px;
+.type-selector {
+    flex-grow: 1;
+}
+
+.text-primary {
+    margin: 5px;
+}
+
+.se-select {
+    margin: 3px;
 }
 
 #buttons {

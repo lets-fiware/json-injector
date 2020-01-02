@@ -18,7 +18,9 @@
 
         beforeAll(function () {
             window.MashupPlatform = new MockMP({
-                type: 'widget'
+                type: 'widget',
+                inputs: ['input'],
+                outputs: ['output']
             });
         });
 

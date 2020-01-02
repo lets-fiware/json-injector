@@ -56,6 +56,12 @@ module.exports = function (grunt) {
             }
         },
 
+        coveralls: {
+            library: {
+                src: 'build/coverage/lcov/lcov.info',
+            }
+        },
+
         strip_code: {
             multiple_files: {
                 src: ['build/src/js/**/*.js']
@@ -124,6 +130,8 @@ module.exports = function (grunt) {
                     }
                 },
                 files: [
+                    'tests/helpers/ace.js',
+                    'tests/helpers/StyledElements.min.js',
                     'node_modules/mock-applicationmashup/dist/MockMP.js',
                     'src/js/*.js',
                     'tests/js/*Spec.js'
@@ -191,13 +199,13 @@ module.exports = function (grunt) {
     grunt.registerTask('test', [
         'bower:install',
         'eslint',
-        //        'karma:widget'
+        'karma:widget'
     ]);
 
     grunt.registerTask('ci', [
         'bower:install',
         'eslint',
-        //        'karma:widgetci',
+        'karma:widgetci',
         'coveralls'
     ]);
 

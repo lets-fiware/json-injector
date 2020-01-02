@@ -20,7 +20,7 @@
     "karma-firefox-launcher": "^1.2.0",
     "karma-jasmine": "^2.0.1",
     "karma-junit-reporter": "^2.0.1",
-    "mock-applicationmashup": "^1.0.0-d",
+    "mock-applicationmashup": "^1.0.0-g",
     "wirecloud-config-parser": "^0.2.2"
   },
   "private": true,
