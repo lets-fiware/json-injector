@@ -42,7 +42,7 @@
 
                 expect(MashupPlatform.wiring.pushEvent).toHaveBeenCalledWith('output', { name: 'abc' });
                 done();
-            }, 300);
+            }, 500);
         });
 
         it("click", function (done) {
@@ -53,7 +53,7 @@
 
                 expect(MashupPlatform.wiring.pushEvent).toHaveBeenCalledWith('output', {});
                 done();
-            }, 300);
+            }, 500);
         });
 
         it("click", function (done) {
@@ -62,7 +62,7 @@
             setTimeout(() => {
                 expect(MashupPlatform.wiring.simulate).toThrow();
                 done();
-            }, 300);
+            }, 500);
         });
 
         it("click", function (done) {
@@ -73,7 +73,7 @@
 
                 expect(MashupPlatform.wiring.pushEvent).not.toHaveBeenCalled();
                 done();
-            }, 300);
+            }, 500);
         });
 
         it("click", function (done) {
@@ -84,7 +84,7 @@
 
                 expect(MashupPlatform.wiring.pushEvent).not.toHaveBeenCalled();
                 done();
-            }, 300);
+            }, 500);
         });
 
     });
