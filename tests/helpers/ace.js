@@ -1,19 +1,30 @@
-(function () {
+class Session {
+    constructor() {
+    }   
 
-    "use strict";
+    setMode() {}
+    setTabSize() {}
+    on() {}
+}
 
-    window.ace = {
-        edit: function () {
-            return {
-                setFontSize: function () {},
-                setValue: function () {},
-                session: {
-                    setMode: function () {},
-                    setTabSize: function () {},
-                    on: function () {}
-                }
-            }
-        }
-    };
+class Edit {
+    constructor() {
+        this.session = new Session();
+        this.value = '{}';
+    }   
+    setFontSize() {}
+    setValue(v) {this.value = v}
+    getValue() {return this.value}
+}
 
-})();
+class Ace {
+    constructor() {
+        this._edit = new Edit();
+    }   
+
+    setFontSize() {}
+    edit() {return this._edit}
+}
+
+window.Ace = Ace;
+

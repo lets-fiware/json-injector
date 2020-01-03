@@ -59,6 +59,7 @@ var JsonInjector = (function () {
         buttons.appendChild(action_buttons);
 
         var sendbtn = new StyledElements.Button({
+            id: 'button',
             iconClass: 'fa fa-play',
             state: 'info',
             title: 'Output data'
@@ -104,6 +105,7 @@ var JsonInjector = (function () {
                     data = JSON.stringify(data, null , "\t");
                 } catch (e) {
                     type = '';
+                    throw new MashupPlatform.wiring.EndpointTypeError();
                 }
             } else if (typeof data === "string") {
                 type = 'JSON - (Object)';
